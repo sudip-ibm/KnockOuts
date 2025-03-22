@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ApiSpec, Integration
+from .models import APISpec, Integration
 
 
 class IntegrationSerializer(serializers.ModelSerializer):
@@ -7,7 +7,7 @@ class IntegrationSerializer(serializers.ModelSerializer):
         model = Integration
         fields = '__all__'
 
-class APISpecSerializer(serializers.ModelSerializer):
+class ApiSpecSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ApiSpec
+        model = APISpec
         fields = '__all__'
