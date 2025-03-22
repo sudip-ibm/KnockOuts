@@ -20,7 +20,9 @@ from monitor.views import IntegrationViewSet
 
 router = DefaultRouter()
 router.register(r'api/integrations', IntegrationViewSet)
+router.register(r'api/apispec', APISpecViewSet, basename='apispec')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('api/integration/<int:pk>/update/', IntegrationUpdateView.as_view(), name='integration-update'),  # Update Integration by PK
 ]
