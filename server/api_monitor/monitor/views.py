@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from .models import Integration
-from monitor.models import APISpec
-from .serializers import IntegrationSerializer
-from .serializers import APISpecSerializer
+from .models import APISpec
+from .serializers import IntegrationSerializer, ApiSpecSerializer
+
 
 class IntegrationViewSet(viewsets.ModelViewSet):
     """
@@ -13,4 +13,4 @@ class IntegrationViewSet(viewsets.ModelViewSet):
 
 class APISpecViewSet(viewsets.ReadOnlyModelViewSet): 
     queryset = APISpec.objects.all()
-    serializer_class = APISpecSerializer
+    serializer_class = ApiSpecSerializer
