@@ -12,8 +12,12 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          path: server  # Change this to your actual project folder
+      
+      - name: Add server to PATH
+        run: echo "$GITHUB_WORKSPACE/server" >> $GITHUB_PATH
+ 
+      - name: Verify Path
+        run: echo $PATH && ls && $(pwd)
 
       - name: Set up Python
         uses: actions/setup-python@v4
