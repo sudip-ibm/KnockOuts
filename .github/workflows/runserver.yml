@@ -13,12 +13,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       
-      - name: Add server to PATH
-        run: echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
- 
-      - name: Verify Path
-        run: echo $GITHUB_PATH
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -26,18 +20,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd $GITHUB_PATH/server  # Change this if needed
+          cd $GITHUB_WORKSPACE/server  # Corrected path
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Apply Migrations
         run: |
-          cd $GITHUB_PATH/server/api-monitor  # Change this if needed
+          cd $GITHUB_WORKSPACE/server/api-monitor  
           python manage.py migrate
 
       - name: Run Server
         run: |
-          cd $GITHUB_PATH/server/api-monitor  # Change this if needed
+          cd $GITHUB_WORKSPACE/server/api-monitor  
           python manage.py runserver 0.0.0.0:8000 &
           sleep 10
           curl --fail http://localhost:8000 || exit 1
