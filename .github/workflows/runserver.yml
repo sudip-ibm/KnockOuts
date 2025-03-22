@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          path: app_directory  # Change this to your actual project folder
+          path: server  # Change this to your actual project folder
 
       - name: Set up Python
         uses: actions/setup-python@v4
