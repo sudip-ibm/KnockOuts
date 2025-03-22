@@ -1,7 +1,8 @@
 from rest_framework import viewsets
 from .models import Integration
+from .models import APISpec
 from .serializers import IntegrationSerializer
-
+from .serializers import APISpecSerializer
 
 class IntegrationViewSet(viewsets.ModelViewSet):
     """
@@ -9,3 +10,7 @@ class IntegrationViewSet(viewsets.ModelViewSet):
     """
     queryset = Integration.objects.all()
     serializer_class = IntegrationSerializer
+
+class APISpecViewSet(viewsets.ReadOnlyModelViewSet): 
+    queryset = APISpec.objects.all()
+    serializer_class = APISpecSerializer
