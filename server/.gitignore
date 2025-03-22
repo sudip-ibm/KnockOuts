@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.egg-info/
+Pipfile
+Pipfile.lock
+
+# Django specific
+db.sqlite3
+*.log
+media/
+staticfiles/
+*.pyc
+
+# Celery & Redis
+celerybeat-schedule
+*.pid
+
+# Environment variables & settings
+.env
+*.env
+config.json
+secrets.json
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Logs & Debugging
+logs/
+*.log
+nohup.out
