@@ -6,3 +6,8 @@ class IntegrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Integration
         fields = '__all__'
+        
+class APISpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = APISpec
+        fields = '__all__'
