@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from monitor.views import IntegrationViewSet
+from monitor.views import APISpecViewSet, IntegrationViewSet
 
 router = DefaultRouter()
 router.register(r'api/integrations', IntegrationViewSet)
