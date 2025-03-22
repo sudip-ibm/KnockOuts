@@ -6,29 +6,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const remediationBtn = document.getElementById('remediationBtn');
     const content = document.getElementById('content');
 
-    dashboardBtn.addEventListener('click', () => {
-        content.innerHTML = '<h2>Dashboard Content</h2><p>This is the dashboard.</p>';
-        // Fetch and display dashboard data from the backend
+    dashboardBtn.addEventListener('click', async () => {
+        content.innerHTML = '<h2>Dashboard Content</h2><p>Loading...</p>';
+        try {
+            const response = await fetch('http://localhost:8000/api/integrations/');
+            if (!response.ok) throw new Error('Failed to fetch');
+            const data = await response.json();
+            
+            let tableHTML = '<h2>Dashboard Content</h2><table border="1"><tr><th>ID</th><th>Name</th><th>Description</th></tr>';
+            data.forEach(integration => {
+                tableHTML += `<tr><td>${integration.id}</td><td>${integration.name}</td><td>${integration.description}</td></tr>`;
+            });
+            tableHTML += '</table>';
+            content.innerHTML = tableHTML;
+        } catch (error) {
+            content.innerHTML = `<h2>Error</h2><p>${error.message}</p>`;
+        }
     });
 
-    apiBtn.addEventListener('click', () => {
-        content.innerHTML = '<h2>API Management</h2><p>Manage your APIs here.</p>';
-        // Load API management UI (add API form, API list, etc.)
+    apiBtn.addEventListener('click', async () => {
+        content.innerHTML = '<h2>API Management</h2><p>Loading...</p>';
+        try {
+            const response = await fetch('http://localhost:8000/api/apis/');
+            if (!response.ok) throw new Error('Failed to fetch');
+            const data = await response.json();
+            
+            let tableHTML = '<h2>API Management</h2><table border="1"><tr><th>ID</th><th>Name</th><th>Endpoint</th></tr>';
+            data.forEach(api => {
+                tableHTML += `<tr><td>${api.id}</td><td>${api.name}</td><td>${api.endpoint}</td></tr>`;
+            });
+            tableHTML += '</table>';
+            content.innerHTML = tableHTML;
+        } catch (error) {
+            content.innerHTML = `<h2>Error</h2><p>${error.message}</p>`;
+        }
     });
 
-    graphBtn.addEventListener('click', () => {
-        content.innerHTML = '<h2>Dependency Graph</h2><p>Visualize dependencies here.</p>';
-        // Load dependency graph visualization (using D3.js or similar)
+    graphBtn.addEventListener('click', async () => {
+        content.innerHTML = '<h2>Dependency Graph</h2><p>Loading...</p>';
+        try {
+            const response = await fetch('http://localhost:8000/api/graph/');
+            if (!response.ok) throw new Error('Failed to fetch');
+            const data = await response.json();
+            content.innerHTML = `<h2>Dependency Graph</h2><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } catch (error) {
+            content.innerHTML = `<h2>Error</h2><p>${error.message}</p>`;
+        }
     });
 
-    impactBtn.addEventListener('click', () => {
-        content.innerHTML = '<h2>Impact Analysis</h2><p>View impact assessments.</p>';
-        // Load impact analysis reports
+    impactBtn.addEventListener('click', async () => {
+        content.innerHTML = '<h2>Impact Analysis</h2><p>Loading...</p>';
+        try {
+            const response = await fetch('http://localhost:8000/api/impact/');
+            if (!response.ok) throw new Error('Failed to fetch');
+            const data = await response.json();
+            content.innerHTML = `<h2>Impact Analysis</h2><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } catch (error) {
+            content.innerHTML = `<h2>Error</h2><p>${error.message}</p>`;
+        }
     });
 
-    remediationBtn.addEventListener('click', () => {
-        content.innerHTML = '<h2>Remediation</h2><p>Manage remediation tasks.</p>';
-        // Load remediation UI (suggested fixes, pull request management, etc.)
+    remediationBtn.addEventListener('click', async () => {
+        content.innerHTML = '<h2>Remediation</h2><p>Loading...</p>';
+        try {
+            const response = await fetch('http://localhost:8000/api/remediation/');
+            if (!response.ok) throw new Error('Failed to fetch');
+            const data = await response.json();
+            content.innerHTML = `<h2>Remediation</h2><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } catch (error) {
+            content.innerHTML = `<h2>Error</h2><p>${error.message}</p>`;
+        }
     });
 
     // Load default content (dashboard)
