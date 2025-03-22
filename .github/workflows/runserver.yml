@@ -1,0 +1,39 @@
+name: Run Django Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  runserver:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          path: app_directory  # Change this to your actual project folder
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          cd server  # Change this if needed
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Apply Migrations
+        run: |
+          cd server/api-monitor  # Change this if needed
+          python manage.py migrate
+
+      - name: Run Server
+        run: |
+          cd server/api-monitor  # Change this if needed
+          python manage.py runserver 0.0.0.0:8000 &
+          sleep 10
+          curl --fail http://localhost:8000 || exit 1
