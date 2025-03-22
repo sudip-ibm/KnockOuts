@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Integration
-from .models import APISpec
+from monitor.models import APISpec
 from .serializers import IntegrationSerializer
 from .serializers import APISpecSerializer
 
