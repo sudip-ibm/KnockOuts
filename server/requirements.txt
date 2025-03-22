@@ -1,0 +1,19 @@
+# Django Framework & API Tools
+Django==4.2.6
+djangorestframework==3.14.0
+
+# Celery & Redis for Background Tasks
+celery==5.3.1
+redis==4.5.5
+
+# JSON Diff for API Spec Comparison
+jsondiff==2.0.0
+
+# Requests for External API Calls
+requests==2.31.0
+
+# Slack SDK for Notifications
+slack_sdk==3.21.3
+
+# Jira API Integration (Optional)
+jira==3.8.0
