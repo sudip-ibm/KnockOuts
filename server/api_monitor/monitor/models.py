@@ -14,7 +14,7 @@ class Integration(models.Model):
         return self.name
 
 
-class ApiSpec(models.Model):
+class APISpec(models.Model):
     integration = models.ForeignKey(Integration, on_delete=models.CASCADE)
     fetched_at = models.DateTimeField(auto_now_add=True)
     spec_data = models.JSONField()
